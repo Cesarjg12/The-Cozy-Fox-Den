@@ -18,6 +18,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/add-video" element={<VideoForm />} />
+            <Route path="/video-list" element={<VideoList />} />
           </Routes>
         </>
       ) : (
