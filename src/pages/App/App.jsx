@@ -4,8 +4,8 @@ import { getUser } from '../../utilities/users-service';
 import './App.css';
 import AuthPage from '../AuthPage/AuthPage';
 import NavBar from '../../components/NavBar/NavBar';
-import VideoForm from '../../VideoForm/VideoForm';
-import VideoList from '../../VideoList/VideoList';
+import VideoForm from '../../components/VideoForm/VideoForm';
+import VideoList from '../../components/VideoList/VideoList';
 
 export default function App() {
   const [user, setUser] = useState(getUser());
