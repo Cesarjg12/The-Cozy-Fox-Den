@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Video = require('../../models/video');
 
+
 // To add a new video
 router.post('/', async (req, res) => {
     try {
