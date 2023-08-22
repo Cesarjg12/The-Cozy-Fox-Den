@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import YouTube from 'react-youtube';
-import { YOUTUBE_API_KEY } from '../../YoutubeAPI'; // Update the import path
+import { YOUTUBE_API_KEY } from '../../YoutubeAPI';
+import categories from '../Categories/Categories';
 
-const VideoForm = ({ categories, addVideo }) => {
+const VideoForm = ({ addVideo }) => {
   const [videoUrl, setVideoUrl] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [feedbackMessage, setFeedbackMessage] = useState('');
 
-  // Move the getVideoIdFromUrl function here
   const getVideoIdFromUrl = (url) => {
     const match = url.match(/(?:v=|\/)([a-zA-Z0-9_-]{11})(?:\?|&|$)/);
     return match ? match[1] : '';
@@ -19,7 +19,10 @@ const VideoForm = ({ categories, addVideo }) => {
       const response = await fetch('/api/videos', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ videoUrl, category: selectedCategory }),
+        body: JSON.stringify({
+          videoUrl,
+          category: selectedCategory,
+        }),
       });
 
       if (response.ok) {
@@ -29,12 +32,10 @@ const VideoForm = ({ categories, addVideo }) => {
         setSelectedCategory('');
         setFeedbackMessage('Video added successfully');
       } else {
-        // Handle error response
         const errorData = await response.json();
         setFeedbackMessage(`Error: ${errorData.error}`);
       }
     } catch (error) {
-      // Handle fetch error
       setFeedbackMessage('An error occurred while adding the video');
     }
   };
@@ -43,7 +44,6 @@ const VideoForm = ({ categories, addVideo }) => {
     <div>
       <h2>Add Video</h2>
       <form onSubmit={handleSubmit}>
-        {/* ... Other input fields ... */}
         <input
           type="text"
           placeholder="YouTube Video URL"
@@ -54,11 +54,15 @@ const VideoForm = ({ categories, addVideo }) => {
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
         >
-          {/* ... Options for categories ... */}
+          <option value="">Select Category</option>
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name}
+            </option>
+          ))}
         </select>
         <button type="submit">Add Video</button>
       </form>
-      {/* Display YouTube video preview */}
       {videoUrl && <YouTube videoId={getVideoIdFromUrl(videoUrl)} />}
     </div>
   );
