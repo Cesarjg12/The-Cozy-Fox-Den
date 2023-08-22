@@ -14,10 +14,13 @@ const VideoList = () => {
           setVideos(videosData);
           setIsLoading(false);
         } else {
-          setError('Error fetching videos');
+          const errorData = await response.json();
+          setError(`Error fetching videos: ${errorData.error}`);
+          setIsLoading(false);
         }
       } catch (error) {
         setError('An error occurred while fetching videos');
+        setIsLoading(false);
       }
     }
     fetchVideos();
@@ -36,7 +39,6 @@ const VideoList = () => {
       <h2>Video List</h2>
       {videos.map((video) => (
         <div key={video._id}>
-          {/* Render video details here */}
         </div>
       ))}
     </div>

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Video = require('../../models/video');
-const categories = require('../../src/components/Categories/Categories')
+const categories = require('../../data/categoriesData');
 
 
 // To add a new video
