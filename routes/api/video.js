@@ -3,7 +3,6 @@ const router = express.Router();
 const fetch = require('node-fetch');
 const Video = require('../../models/video');
 const categories = require('../../data/categoriesData');
-const { YOUTUBE_API_KEY } = require('../../src/YoutubeAPI'); // Update the path
 
 // Function to extract video ID from URL
 const getVideoIdFromUrl = (url) => {
@@ -17,10 +16,13 @@ router.post('/', async (req, res) => {
     const { videoUrl, category } = req.body;
 
     // Fetch the video title from the YouTube API
-    const videoId = getVideoIdFromUrl(videoUrl);
-    const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${YOUTUBE_API_KEY}&part=snippet`);
-    const data = await response.json();
-    const videoTitle = data.items[0]?.snippet?.title || 'Untitled Video';
+const videoId = getVideoIdFromUrl(videoUrl);
+const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${process.env.YOUTUBE_API_KEY}&part=snippet`);
+const data = await response.json();
+
+
+
+const videoTitle = data.items[0]?.snippet?.title || 'Untitled Video';
 
     // Find the selected category
     const selectedCategory = categories.find(cat => cat.id === category);

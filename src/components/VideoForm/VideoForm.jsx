@@ -16,14 +16,14 @@ const VideoForm = ({ addVideo }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('/api/videos', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          videoUrl,
-          category: selectedCategory,
-        }),
-      });
+      // const response = await fetch('/api/videos', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({
+      //     videoUrl,
+      //     category: selectedCategory,
+      //   }),
+      // });
   
       if (response.ok) {
         const newVideo = await response.json();
