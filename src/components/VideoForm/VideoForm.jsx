@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import YouTube from 'react-youtube';
-import { YOUTUBE_API_KEY } from '../../YoutubeAPI';
+import sendRequest from '../../utilities/send-request';
 import categories from '../Categories/Categories';
 
 const VideoForm = ({ addVideo }) => {
@@ -16,17 +16,13 @@ const VideoForm = ({ addVideo }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // const response = await fetch('/api/videos', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({
-      //     videoUrl,
-      //     category: selectedCategory,
-      //   }),
-      // });
-  
+      const response = await sendRequest('/api/videos', 'POST', {
+        videoUrl,
+        category: selectedCategory,
+      });
+
       if (response.ok) {
-        const newVideo = await response.json();
+        const newVideo = response;
         addVideo(newVideo);
         setVideoUrl('');
         setSelectedCategory('');
