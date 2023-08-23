@@ -24,7 +24,7 @@ const VideoForm = ({ addVideo }) => {
           category: selectedCategory,
         }),
       });
-
+  
       if (response.ok) {
         const newVideo = await response.json();
         addVideo(newVideo);

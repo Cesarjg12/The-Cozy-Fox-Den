@@ -34,11 +34,26 @@ const VideoList = () => {
     return <div>{error}</div>;
   }
 
+  // Groups videos by category
+  const videosByCategory = videos.reduce((map, video) => {
+    if (!map[video.category]) {
+      map[video.category] = [];
+    }
+    map[video.category].push(video);
+    return map;
+  }, {});
+
   return (
     <div>
       <h2>Video List</h2>
-      {videos.map((video) => (
-        <div key={video._id}>
+      {Object.keys(videosByCategory).map((category) => (
+        <div key={category}>
+          <h3>{category}</h3>
+          {videosByCategory[category].map((video) => (
+            <div key={video._id}>
+              <p>{video.title}</p>
+            </div>
+          ))}
         </div>
       ))}
     </div>
