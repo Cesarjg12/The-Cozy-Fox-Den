@@ -15,24 +15,25 @@ const VideoForm = ({ addVideo }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const extractedVideoId = getVideoIdFromUrl(videoUrl); // Extract video ID
     try {
       const response = await sendRequest('/api/videos', 'POST', {
-        videoUrl,
-        category: selectedCategory, // Use the selected category ID
+        videoUrl: extractedVideoId, // Save extracted video ID instead of full URL
+        category: selectedCategory,
       });
-  
+
       if (response.ok) {
         const newVideo = await response.json();
-  
+
         // Find the selected category based on the category ID
         const selectedCategoryObject = categories.find(cat => cat.id === selectedCategory);
-  
+
         // Add a custom category property to the video
         const formattedVideo = {
           ...newVideo,
           customCategory: selectedCategoryObject ? selectedCategoryObject.name : '',
         };
-  
+
         addVideo(formattedVideo);
         setVideoUrl('');
         setSelectedCategory('');

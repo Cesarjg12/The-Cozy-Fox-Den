@@ -10,12 +10,12 @@ const VideoDetail = ({ videos }) => {
     return <div>Video not found.</div>;
   }
 
-  const videoUrl = `https://www.youtube.com/embed/${video.videoUrl}`;
-  
+  const videoIdFromUrl = video.videoUrl.split('v=')[1];
+
   return (
     <div>
       <h2>{video.title}</h2>
-      <YouTube videoId={videoUrl} />
+      <YouTube videoId={videoIdFromUrl} /> 
     </div>
   );
 };
