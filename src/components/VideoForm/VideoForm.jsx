@@ -18,12 +18,22 @@ const VideoForm = ({ addVideo }) => {
     try {
       const response = await sendRequest('/api/videos', 'POST', {
         videoUrl,
-        category: selectedCategory,
+        category: selectedCategory, // Use the selected category ID
       });
-
+  
       if (response.ok) {
-        const newVideo = response;
-        addVideo(newVideo);
+        const newVideo = await response.json();
+  
+        // Find the selected category based on the category ID
+        const selectedCategoryObject = categories.find(cat => cat.id === selectedCategory);
+  
+        // Add a custom category property to the video
+        const formattedVideo = {
+          ...newVideo,
+          customCategory: selectedCategoryObject ? selectedCategoryObject.name : '',
+        };
+  
+        addVideo(formattedVideo);
         setVideoUrl('');
         setSelectedCategory('');
         setFeedbackMessage('Video added successfully');

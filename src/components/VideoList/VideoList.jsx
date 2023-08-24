@@ -4,13 +4,14 @@ const VideoList = () => {
   const [videos, setVideos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
+console.log(videos)
   useEffect(() => {
     async function fetchVideos() {
       try {
         const response = await fetch('/api/videos');
         if (response.ok) {
           const videosData = await response.json();
+          console.log(videosData)
           setVideos(videosData);
           setIsLoading(false);
         } else {
@@ -36,10 +37,12 @@ const VideoList = () => {
 
   // Groups videos by category
   const videosByCategory = videos.reduce((map, video) => {
-    if (!map[video.category]) {
-      map[video.category] = [];
+    const categoryName = video.category;
+
+    if (!map[categoryName]) {
+      map[categoryName] = [];
     }
-    map[video.category].push(video);
+    map[categoryName].push(video);
     return map;
   }, {});
 
@@ -61,3 +64,4 @@ const VideoList = () => {
 };
 
 export default VideoList;
+

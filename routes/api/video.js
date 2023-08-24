@@ -43,4 +43,15 @@ const videoTitle = data.items[0]?.snippet?.title || 'Untitled Video';
   }
 });
 
+//To get all videos
+router.get('/', async (req, res) => {
+  try {
+    const videos = await Video.find();
+    res.json(videos);
+  } catch (error) {
+    console.error('Error fetching videos:', error);
+    res.status(500).json({ error: 'Unable to fetch videos' });
+  }
+});
+
 module.exports = router;
