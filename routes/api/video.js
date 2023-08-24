@@ -16,13 +16,13 @@ router.post('/', async (req, res) => {
     const { videoUrl, category } = req.body;
 
     // Fetch the video title from the YouTube API
-const videoId = getVideoIdFromUrl(videoUrl);
-const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${process.env.YOUTUBE_API_KEY}&part=snippet`);
-const data = await response.json();
-
-
-
-const videoTitle = data.items[0]?.snippet?.title || 'Untitled Video';
+    const videoId = getVideoIdFromUrl(videoUrl);
+    const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?id=${videoUrl}&key=${process.env.YOUTUBE_API_KEY}&part=snippet`);
+    const data = await response.json();
+   
+    
+    const videoTitle = data.items[0]?.snippet?.title || 'Untitled Video';
+  
 
     // Find the selected category
     const selectedCategory = categories.find(cat => cat.id === category);

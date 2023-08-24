@@ -51,12 +51,13 @@ const VideoList = () => {
         <div key={category}>
           <h3>{category}</h3>
           {videosByCategory[category].map(video => {
+            console.log('Video Title:', video.title);
             return (
               <div key={video._id}>
                 <p>
                   <Link to={`/video/${video._id}`}>
-  {video.title ? video.title.slice(0, 40) : 'Untitled Video'}...
-</Link>
+                  {video.title ? video.title.slice(0, 40) : 'Untitled Video'}
+                  </Link>
                 </p>
               </div>
             );
@@ -65,6 +66,5 @@ const VideoList = () => {
       ))}
     </div>
   )};
-  
 
 export default VideoList;
