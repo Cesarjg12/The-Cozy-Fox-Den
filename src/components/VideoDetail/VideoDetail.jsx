@@ -10,12 +10,12 @@ const VideoDetail = ({ videos }) => {
     return <div>Video not found.</div>;
   }
 
-  const videoIdFromUrl = video.videoUrl.split('v=')[1];
+  const videoUrl = `https://www.youtube.com/watch?v=${video.videoUrl}`;
 
   return (
     <div>
       <h2>{video.title}</h2>
-      <YouTube videoId={videoIdFromUrl} /> 
+      <YouTube videoId={video.videoUrl} />
     </div>
   );
 };
