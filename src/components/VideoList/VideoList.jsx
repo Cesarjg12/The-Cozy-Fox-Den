@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const VideoList = () => {
   const [videos, setVideos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-console.log(videos)
+
   useEffect(() => {
     async function fetchVideos() {
       try {
         const response = await fetch('/api/videos');
         if (response.ok) {
           const videosData = await response.json();
-          console.log(videosData)
           setVideos(videosData);
           setIsLoading(false);
         } else {
@@ -37,31 +37,34 @@ console.log(videos)
 
   // Groups videos by category
   const videosByCategory = videos.reduce((map, video) => {
-    const categoryName = video.category;
-
-    if (!map[categoryName]) {
-      map[categoryName] = [];
+    if (!map[video.category]) {
+      map[video.category] = [];
     }
-    map[categoryName].push(video);
+    map[video.category].push(video);
     return map;
   }, {});
 
   return (
     <div>
       <h2>Video List</h2>
-      {Object.keys(videosByCategory).map((category) => (
+      {Object.keys(videosByCategory).map(category => (
         <div key={category}>
           <h3>{category}</h3>
-          {videosByCategory[category].map((video) => (
-            <div key={video._id}>
-              <p>{video.title}</p>
-            </div>
-          ))}
+          {videosByCategory[category].map(video => {
+            return (
+              <div key={video._id}>
+                <p>
+                  <Link to={`/video/${video._id}`}>
+  {video.title ? video.title.slice(0, 40) : 'Untitled Video'}...
+</Link>
+                </p>
+              </div>
+            );
+          })}
         </div>
       ))}
     </div>
-  );
-};
+  )};
+  
 
 export default VideoList;
-

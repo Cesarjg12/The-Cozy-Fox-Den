@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import './App.css';
@@ -6,9 +6,28 @@ import AuthPage from '../AuthPage/AuthPage';
 import NavBar from '../../components/NavBar/NavBar';
 import VideoForm from '../../components/VideoForm/VideoForm';
 import VideoList from '../../components/VideoList/VideoList';
+import VideoDetail from '../../components/VideoDetail/VideoDetail';
 
 export default function App() {
   const [user, setUser] = useState(getUser());
+  const [videos, setVideos] = useState([]);
+
+  useEffect(() => {
+    async function fetchVideos() {
+      try {
+        const response = await fetch('/api/videos');
+        if (response.ok) {
+          const videosData = await response.json();
+          setVideos(videosData);
+        } else {
+          console.error('Error fetching videos');
+        }
+      } catch (error) {
+        console.error('An error occurred while fetching videos');
+      }
+    }
+    fetchVideos();
+  }, []);
 
   return (
     <main className="App">
@@ -19,6 +38,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/add-video" element={<VideoForm />} />
             <Route path="/video-list" element={<VideoList />} />
+            <Route path="/video/:videoId" element={<VideoDetail videos={videos} />} />
           </Routes>
         </>
       ) : (
