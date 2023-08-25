@@ -26,7 +26,7 @@ export default class SignUpForm extends Component {
       // method will resolve to the user object included
       // in the payload of the JSON Web Token (JWT)
       const user = await signUp(formData);
-      this.props.setUser(user);
+      this.props.onSuccess();
     } catch {
       // An error occurred
       // Probably due to a duplicate email
