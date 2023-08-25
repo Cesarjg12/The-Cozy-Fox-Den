@@ -35,13 +35,21 @@ console.log('Response', response)
         };
         setVideoUrl('');
         setSelectedCategory('');
-        toast.success('Success! Video has been added!');
+        toast.success('Success! Video has been added!', {
+          position: 'top-center',
+          autoClose: 3000,
+          theme: 'dark'
+        })
       } else {
         const errorData = await response.json();
         toast.error(`Error: ${errorData.error}`);
       }
     } catch (error) {
-      toast.error('An error occurred while adding the video');
+      toast.error('An error occurred while adding the video', {
+        position: 'top-center',
+        autoClose: 3000,
+        theme: 'dark'
+      })
     }
   };
 

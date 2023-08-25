@@ -56,12 +56,11 @@ export default function App() {
 }
 
 // Create a Home component to display VideoList and VideoForm
-function Home({ handleNotify }) {
+function Home() {
   return (
     <div>
       <VideoForm />
       <VideoList />
-      <button onClick={handleNotify}>Notify</button>
     </div>
   );
 }
