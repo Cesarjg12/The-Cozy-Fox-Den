@@ -9,6 +9,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import VideoForm from '../../components/VideoForm/VideoForm';
 import VideoList from '../../components/VideoList/VideoList';
 import VideoDetail from '../../components/VideoDetail/VideoDetail';
+import HomePage from '../../components/HomePage/HomePage';
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -37,30 +38,24 @@ export default function App() {
 
   return (
     <main className="App">
-      {user ? (
-        <>
-          <NavBar user={user} setUser={setUser} />
-          <Routes>
-            <Route path="/" element={<Home handleNotify={handleNotify} />} />
-            <Route path="/add-video" element={<VideoForm />} />
-            <Route path="/video-list" element={<VideoList />} />
-            <Route path="/video/:videoId" element={<VideoDetail videos={videos} />} />
-          </Routes>
-          <ToastContainer />
-        </>
-      ) : (
-        <AuthPage setUser={setUser} />
-      )}
+      <NavBar user={user} setUser={setUser} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/add-video" element={user ? <VideoForm /> : null} />
+        <Route path="/video-list" element={<VideoList videos={videos} />} />
+        <Route path="/video/:videoId" element={<VideoDetail videos={videos} />} />
+        <Route path="/login" element={<AuthPage setUser={setUser} />} />
+      </Routes>
+      <ToastContainer />
     </main>
   );
 }
 
-// Create a Home component to display VideoList and VideoForm
+// Creates a Home page
 function Home() {
   return (
     <div>
-      <VideoForm />
-      <VideoList />
+      <HomePage />
     </div>
   );
 }

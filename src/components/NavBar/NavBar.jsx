@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import * as userService from '../../utilities/users-service';
 
@@ -9,12 +10,23 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav>
-     <Link to="/video-list">Video List</Link>
+      <Link to="/video-list">Video List</Link>
       &nbsp;&nbsp;
-      <Link to="/add-video">Add Video</Link>
-      &nbsp;&nbsp;
-      <span>Welcome, {user.name}</span>
-      &nbsp;&nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>
+      {user ? (
+        <>
+          <Link to="/add-video">Add Video</Link>
+          &nbsp;&nbsp;
+          <span>Welcome, {user.name}</span>
+          &nbsp;&nbsp;
+          <Link to="" onClick={handleLogOut}>Log Out</Link>
+        </>
+      ) : (
+        <>
+          <span>Welcome!</span>
+          &nbsp;&nbsp;
+          <Link to="/login">Log In / Sign Up</Link>
+        </>
+      )}
     </nav>
   );
 }
