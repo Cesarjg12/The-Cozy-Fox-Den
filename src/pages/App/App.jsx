@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { getUser } from '../../utilities/users-service';
 import './App.css';
 import AuthPage from '../AuthPage/AuthPage';
@@ -29,17 +31,22 @@ export default function App() {
     fetchVideos();
   }, []);
 
+  const handleNotify = () => {
+    toast.success('This is a test notification');
+  };
+
   return (
     <main className="App">
       {user ? (
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home handleNotify={handleNotify} />} />
             <Route path="/add-video" element={<VideoForm />} />
             <Route path="/video-list" element={<VideoList />} />
             <Route path="/video/:videoId" element={<VideoDetail videos={videos} />} />
           </Routes>
+          <ToastContainer />
         </>
       ) : (
         <AuthPage setUser={setUser} />
@@ -49,11 +56,12 @@ export default function App() {
 }
 
 // Create a Home component to display VideoList and VideoForm
-function Home() {
+function Home({ handleNotify }) {
   return (
     <div>
       <VideoForm />
       <VideoList />
+      <button onClick={handleNotify}>Notify</button>
     </div>
   );
 }

@@ -2,55 +2,53 @@ import React, { useState } from 'react';
 import YouTube from 'react-youtube';
 import sendRequest from '../../utilities/send-request';
 import categories from '../Categories/Categories';
+import { toast } from 'react-toastify';
 
-const VideoForm = ({ addVideo }) => {
+const VideoForm = () => {
   const [videoUrl, setVideoUrl] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [feedbackMessage, setFeedbackMessage] = useState('');
 
   const getVideoIdFromUrl = (url) => {
     const match = url.match(/(?:v=|\/)([a-zA-Z0-9_-]{11})(?:\?|&|$)/);
     return match ? match[1] : '';
   };
 
-  const handleSubmit = async (e) => {
+  const handleNotify = async (e) => {
     e.preventDefault();
-    const extractedVideoId = getVideoIdFromUrl(videoUrl); // Extract video ID
+    const extractedVideoId = getVideoIdFromUrl(videoUrl);
+
     try {
       const response = await sendRequest('/api/videos', 'POST', {
-        videoUrl: extractedVideoId, // Save extracted video ID instead of full URL
+        videoUrl: extractedVideoId,
         category: selectedCategory,
       });
+console.log('Response', response)
+      if (response.title !== 'Untitled Video') {
+        console.log('re')
+        const newVideo = response;
 
-      if (response.ok) {
-        const newVideo = await response.json();
-
-        // Find the selected category based on the category ID
         const selectedCategoryObject = categories.find(cat => cat.id === selectedCategory);
 
-        // Add a custom category property to the video
         const formattedVideo = {
           ...newVideo,
           customCategory: selectedCategoryObject ? selectedCategoryObject.name : '',
         };
-
-        addVideo(formattedVideo);
         setVideoUrl('');
         setSelectedCategory('');
-        setFeedbackMessage('Video added successfully');
+        toast.success('Success! Video has been added!');
       } else {
         const errorData = await response.json();
-        setFeedbackMessage(`Error: ${errorData.error}`);
+        toast.error(`Error: ${errorData.error}`);
       }
     } catch (error) {
-      setFeedbackMessage('An error occurred while adding the video');
+      toast.error('An error occurred while adding the video');
     }
   };
 
   return (
     <div>
       <h2>Add Video</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleNotify}>
         <input
           type="text"
           placeholder="YouTube Video URL"
@@ -76,3 +74,4 @@ const VideoForm = ({ addVideo }) => {
 };
 
 export default VideoForm;
+
