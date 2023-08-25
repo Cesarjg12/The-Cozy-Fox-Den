@@ -22,9 +22,7 @@ const VideoForm = () => {
         videoUrl: extractedVideoId,
         category: selectedCategory,
       });
-console.log('Response', response)
       if (response.title !== 'Untitled Video') {
-        console.log('re')
         const newVideo = response;
 
         const selectedCategoryObject = categories.find(cat => cat.id === selectedCategory);

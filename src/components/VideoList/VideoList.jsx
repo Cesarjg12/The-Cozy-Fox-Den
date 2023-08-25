@@ -51,7 +51,6 @@ const VideoList = () => {
         <div key={category}>
           <h3>{category}</h3>
           {videosByCategory[category].map(video => {
-            console.log('Video Title:', video.title);
             return (
               <div key={video._id}>
                 <p>
