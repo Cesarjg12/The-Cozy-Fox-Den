@@ -1,7 +1,7 @@
 import React from 'react';
 import YouTube from 'react-youtube';
 import { useParams } from 'react-router-dom';
-import '../Categories/Categories.css'
+import '../../pages/App/App.css'
 
 const VideoDetail = ({ videos }) => {
   const { videoId } = useParams();
