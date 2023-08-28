@@ -1,5 +1,6 @@
 import React from 'react';
 import './HomePage.css';
+import logoImage from '../../Images/Cozyfox.gif'
 
 function HomePage() {
   return (
@@ -11,6 +12,7 @@ function HomePage() {
         And if you're inclined to share your own favorites, why not sign up and join our community? 
         Embrace the cozy atmosphere and let the music take you to new levels of relaxation.
       </p>
+      <img src={logoImage} alt="The Cozy Fox Den Logo" className="logo-image" loop="1" />
     </div>
   );
 }
