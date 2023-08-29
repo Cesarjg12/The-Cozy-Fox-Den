@@ -97,5 +97,5 @@ Your retreat for relaxation and musical indulgence. Here, you're invited to snug
    - [ ] Add a favorites list
    - [ ] Allow users to comment on the videos
    - [ ] Allow users to search the videos by name
-   - [ ] Trello for more enhancements: [Trello](https://trello.com/b/qnQrYDDK/the-cozy-fox-den)
+   - [ ] Trello for more details: [Trello](https://trello.com/b/qnQrYDDK/the-cozy-fox-den)
 ---
