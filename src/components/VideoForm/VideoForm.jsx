@@ -3,6 +3,7 @@ import YouTube from 'react-youtube';
 import sendRequest from '../../utilities/send-request';
 import categories from '../Categories/Categories';
 import { toast } from 'react-toastify';
+import './VideoForm.css'
 
 const VideoForm = () => {
   const [videoUrl, setVideoUrl] = useState('');
@@ -52,7 +53,7 @@ const VideoForm = () => {
   };
 
   return (
-    <div>
+    <div className='form'>
       <h2>Like a video? Share a video!</h2>
       <form onSubmit={handleNotify}>
         <input
