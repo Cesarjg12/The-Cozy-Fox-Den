@@ -1,5 +1,6 @@
 .category-Rain {
     background-image: url('../../Images/rain.jpg');
+    background-size: cover;
   }
 .category-Jungle{
     background-image: url('../../Images/jungle.jpg');
@@ -9,19 +10,40 @@
   }
 .category-Whale {
     background-image: url('../../Images/Whale.jpg');
+    /* background-size: cover; */
   }
 .category-Starry {
     background-image: url('../../Images/starrynight.jpg');
+    background-size: cover;
   }
 .category-Hymns {
     background-image: url('../../Images/hymns.jpg');
   }
 .category-Birds {
     background-image: url('../../Images/Bird.jpg');
+    background-size: cover;
   }
 .category-Lofi {
     background-image: url('../../Images/Lofisleep.jpg');
+    background-size: cover;
   }
 .category-White {
     background-image: url('../../Images/noise.jpg');
+    background-size: cover;
+  }
+
+
+  .video-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 94vh;
+    color: white;
+  }
+
+  .title-box {
+    background-color: rgba(0, 0, 0, 0.606);
+    padding: 5px 5px;
+    border-radius: 5px;
   }

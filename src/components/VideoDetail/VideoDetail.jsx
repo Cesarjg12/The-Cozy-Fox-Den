@@ -15,9 +15,13 @@ console.log('Video', video)
 
   return (
     <div className={`category-${video.category}`}>
-      <h2>{video.title}</h2>
+      <div className="video-detail">
+      <div className="title-box">
+          <h2 className="video-title">{video.title}</h2>
+          </div>
       <YouTube videoId={video.videoUrl} />
     </div>
+  </div>
   );
 };
 
