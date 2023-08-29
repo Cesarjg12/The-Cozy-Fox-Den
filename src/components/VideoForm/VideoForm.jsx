@@ -53,7 +53,7 @@ const VideoForm = () => {
 
   return (
     <div>
-      <h2>Add Video</h2>
+      <h2>Like a video? Share a video!</h2>
       <form onSubmit={handleNotify}>
         <input
           type="text"

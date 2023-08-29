@@ -4,13 +4,15 @@
   }
 .category-Jungle{
     background-image: url('../../Images/jungle.jpg');
+    background-size: cover;
   }
 .category-Ocean {
     background-image: url('../../Images/ocean.jpg');
+    background-size: cover;
   }
 .category-Whale {
     background-image: url('../../Images/Whale.jpg');
-    /* background-size: cover; */
+    background-size: cover;
   }
 .category-Starry {
     background-image: url('../../Images/starrynight.jpg');
@@ -18,6 +20,7 @@
   }
 .category-Hymns {
     background-image: url('../../Images/hymns.jpg');
+    background-size: cover;
   }
 .category-Birds {
     background-image: url('../../Images/Bird.jpg');

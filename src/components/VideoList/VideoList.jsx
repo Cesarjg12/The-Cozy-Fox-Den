@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import './VideoList.css'
 
 const VideoList = () => {
   const [videos, setVideos] = useState([]);
@@ -45,25 +46,29 @@ const VideoList = () => {
   }, {});
 
   return (
-    <div>
-      <h2>Video List</h2>
-      {Object.keys(videosByCategory).map(category => (
-        <div key={category}>
-          <h3>{category}</h3>
-          {videosByCategory[category].map(video => {
-            return (
-              <div key={video._id}>
-                <p>
-                  <Link to={`/video/${video._id}`}>
-                  {video.title ? video.title.slice(0, 40) : 'Untitled Video'}
-                  </Link>
-                </p>
-              </div>
-            );
-          })}
-        </div>
-      ))}
+    <div className="video-list-container">
+      <h2>Pick a category and relax</h2>
+      <div className="category-grid">
+        {Object.keys(videosByCategory).map(category => (
+          <div key={category} className="category-card">
+            <h3 className="category-title">{category}</h3>
+            <div className="video-card-list">
+              {videosByCategory[category].map(video => (
+                <div key={video._id} className="video-card">
+                  <p>
+                    <Link to={`/video/${video._id}`}>
+                      {video.title ? video.title.slice(0, 40) : 'Untitled Video'}
+                    </Link>
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
-  )};
+  );
+};
+
 
 export default VideoList;
