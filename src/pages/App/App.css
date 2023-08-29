@@ -45,33 +45,6 @@ a {
   color: #e3b268;
 }
 
-.category-rain {
-  background-image: url('../../Images/rain.jpg');
-}
-.category-jungle {
-  background-image: url('../../Images/jungle.jpg');
-}
-.category-ocean {
-  background-image: url('../../Images/ocean.jpg');
-}
-.category-whale {
-  background-image: url('../../Images/Whale.jpg');
-}
-.category-starry {
-  background-image: url('../../Images/starrynight.jpg');
-}
-.category-hymn {
-  background-image: url('../../Images/hymns.jpg');
-}
-.category-bird {
-  background-image: url('../../Images/Bird.jpg');
-}
-.category-lofi {
-  background-image: url('../../Images/Lofisleep.jpg');
-}
-.category-noise {
-  background-image: url('../../Images/noise.jpg');
-}
 
 h3,h2,nav, main {
   color: whitesmoke;
